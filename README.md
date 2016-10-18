@@ -11,4 +11,4 @@ An android app which is based on react-native
 
 安装包下载地址：暂缺
 
-软件使用教程：暂缺
+APP使用教程：暂缺
