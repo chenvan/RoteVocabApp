@@ -10,6 +10,6 @@
     "react-native": "^0.35.0",
     "react-native-multiple-choice": "0.0.8",
     "react-native-parsed-text": "0.0.16",
-	"bluebird": "3.4.6"
+    "bluebird": "3.4.6"
   }
 }
