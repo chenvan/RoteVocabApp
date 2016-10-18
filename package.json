@@ -1,0 +1,15 @@
+{
+  "name": "RoteVocabApp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "15.3.1",
+    "react-native": "^0.35.0",
+    "react-native-multiple-choice": "0.0.8",
+    "react-native-parsed-text": "0.0.16",
+	"bluebird": "3.4.6"
+  }
+}
