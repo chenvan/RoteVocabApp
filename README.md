@@ -1,3 +1,9 @@
+![app icon]()
+![home]()
+![pratice]()
+![file]()
+![output]()
+
 # RoteVocabApp
 An android app which is based on react-native
 
@@ -11,4 +17,4 @@ An android app which is based on react-native
 
 安装包下载地址：暂缺
 
-APP使用教程：暂缺
+APP使用教程：[链接](http://rollawang.com/2016/10/19/%E9%80%8F%E6%9E%90%E8%AE%B0%E8%AF%8D%E7%9A%84%E7%94%A8%E6%B3%95/)

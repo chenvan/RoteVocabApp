@@ -1,15 +1,14 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ *app name:透析单词
+ *author:陈旺
+ *1.00 finish date:2016-10-20
  */
 
 import React, { Component } from 'react';
 import {
   AppRegistry,
   Navigator,
-  ToastAndroid,
-  Linking,
+  Text,
   View
 } from 'react-native';
 
@@ -19,17 +18,11 @@ import InitScene from './lib/Components/InitScene';
 import PracticeScene from './lib/Components/PracticeScene';
 
 class RoteVocabApp extends Component {
-
-
-
+  
   render() {
-         
+
     return (
       <View style={{flex:1}}>
-        {/*<StatusBar
-          //backgroundColor='#1976D2'
-          ref={(statusBarRef)=> this.statusBarRef = statusBarRef}
-        />*/}
         <Navigator
           initialRoute={{name: "init"}}
           renderScene={(route, navigator) => {
@@ -43,6 +36,7 @@ class RoteVocabApp extends Component {
               case "addFile" :
                 return <AddFile navigator={navigator} />
               default:
+                return <View><Text>出错，请重新打开透析记词</Text></View>;
             }
           }}
           configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
@@ -50,12 +44,6 @@ class RoteVocabApp extends Component {
       </View>
     );
   }
-
-  /*componentDidMount(){
-    StatusBar.setBackgroundColor('#1976D2',true);
-  }*/
 }
-
-
 
 AppRegistry.registerComponent('RoteVocabApp', () => RoteVocabApp);
