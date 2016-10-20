@@ -1,8 +1,8 @@
-![app icon](http://awangimage.b0.upaiyun.com/github/RoteVOcabApp/icon2.2.png!/fw/150)
-![home](http://awangimage.b0.upaiyun.com/github/RoteVOcabApp/home.png!/fw/250)
-![pratice](http://awangimage.b0.upaiyun.com/github/RoteVOcabApp/practice.png!/fw/250)
-![file](http://awangimage.b0.upaiyun.com/github/RoteVOcabApp/file.png!/fw/250)
-![output](http://awangimage.b0.upaiyun.com/github/RoteVOcabApp/output.png!/fw/250)
+![app icon](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/icon2.2.png!/fw/150)
+![home](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/home.png!/fw/250)
+![pratice](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/practice.png!/fw/250)
+![file](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/file.png!/fw/250)
+![output](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/output.png!/fw/250)
 
 # RoteVocabApp
 An android app which is based on react-native
