@@ -1,6 +1,8 @@
 ![app icon](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/icon2.2.png!/fw/150)
+<br />
 ![home](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/home.png!/fw/250)
 ![pratice](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/practice.png!/fw/250)
+<br />
 ![file](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/file.png!/fw/250)
 ![output](http://awangimage.b0.upaiyun.com/github/RoteVocabApp/output.png!/fw/250)
 
