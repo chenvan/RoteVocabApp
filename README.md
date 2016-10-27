@@ -17,6 +17,6 @@ An android app which is based on react-native
 
 安装环境为android 5.0+
 
-安装包下载地址：暂缺
+安装包下载地址：[应用宝](http://sj.qq.com/myapp/detail.htm?apkName=com.rotevocabapp)
 
 APP使用教程：[链接](http://rollawang.com/2016/10/19/%E9%80%8F%E6%9E%90%E8%AE%B0%E8%AF%8D%E7%9A%84%E7%94%A8%E6%B3%95/)
