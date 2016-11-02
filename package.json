@@ -8,7 +8,8 @@
   "dependencies": {
     "react": "15.3.1",
     "react-native": "^0.35.0",
-    "react-native-multiple-choice": "0.0.8",
+	"react-native-fs": "2.0.1-rc.2",
+    "react-native-action-button": "^2.0.12",
     "react-native-parsed-text": "0.0.16",
     "bluebird": "3.4.6"
   }
