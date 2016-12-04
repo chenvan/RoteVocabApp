@@ -6,11 +6,11 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "bluebird": "3.4.6",
     "react": "15.3.1",
     "react-native": "^0.35.0",
-	"react-native-fs": "2.0.1-rc.2",
-    "react-native-action-button": "^2.0.12",
+    "react-native-fs": "2.0.1-rc.2",
     "react-native-parsed-text": "0.0.16",
-    "bluebird": "3.4.6"
+    "react-native-swipe-list-view": "^0.3.1"
   }
 }
