@@ -16,9 +16,10 @@ import AddFile from './lib/Components/AddFile';
 import HomeScene from './lib/Components/HomeScene';
 import InitScene from './lib/Components/InitScene';
 import PracticeScene from './lib/Components/PracticeScene';
+import SearchCoverImageScene from './lib/Components/SearchCoverImageScene';
 
 class RoteVocabApp extends Component {
-  
+
   render() {
 
     return (
@@ -26,7 +27,7 @@ class RoteVocabApp extends Component {
         <Navigator
           initialRoute={{name: "init"}}
           renderScene={(route, navigator) => {
-            switch(route.name){                   
+            switch(route.name){
               case "init":
                 return <InitScene navigator={navigator} />
               case "homeScene":
@@ -35,6 +36,8 @@ class RoteVocabApp extends Component {
                 return <PracticeScene db={route.db} navigator={navigator} />
               case "addFile" :
                 return <AddFile navigator={navigator} />
+              case "searchCoverImageScene" :
+                return <SearchCoverImageScene navigator={navigator} itemName={route.itemName}/>
               default:
                 return <View><Text>出错，请重新打开透析记词</Text></View>;
             }
