@@ -9,7 +9,9 @@ import {
   AppRegistry,
   Navigator,
   Text,
-  View
+  View,
+  ToastAndroid,
+  BackAndroid,
 } from 'react-native';
 
 import AddFile from './lib/Components/AddFile';
@@ -39,7 +41,9 @@ class RoteVocabApp extends Component {
               case "searchCoverImageScene" :
                 return <SearchCoverImageScene navigator={navigator} itemName={route.itemName}/>
               default:
-                return <View><Text>出错，请重新打开透析记词</Text></View>;
+                //exit app
+                ToastAndroid.show("程序出错，自动退出",ToastAndroid.LONG);
+                BackAndroid.exitApp();
             }
           }}
           configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
