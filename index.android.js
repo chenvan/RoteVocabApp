@@ -5,52 +5,48 @@
  */
 
 import React, { Component } from 'react';
+import { Provider } from 'react-redux'
 import {
   AppRegistry,
-  Navigator,
+  ToastAndroid,
   Text,
   View,
-  ToastAndroid,
+  Navigator,
   BackAndroid,
 } from 'react-native';
-
+import APP from './APP';
+import SearchCoverImageScene from './lib/Components/SearchCoverImageScene';
+import { configStore } from './lib/Action/Action';
 import AddFile from './lib/Components/AddFile';
-import HomeScene from './lib/Components/HomeScene';
+/*import HomeScene from './lib/Components/HomeScene';
 import InitScene from './lib/Components/InitScene';
 import PracticeScene from './lib/Components/PracticeScene';
-import SearchCoverImageScene from './lib/Components/SearchCoverImageScene';
+*/
 
-class RoteVocabApp extends Component {
+var store = configStore();
 
-  render() {
-
-    return (
-      <View style={{flex:1}}>
+const RoteVocabApp = () => {
+  return (
+      <Provider store = {store}>
+        {/*<APP />*/}
         <Navigator
-          initialRoute={{name: "init"}}
-          renderScene={(route, navigator) => {
-            switch(route.name){
-              case "init":
-                return <InitScene navigator={navigator} />
-              case "homeScene":
-                return <HomeScene db={route.db} navigator={navigator} />
-              case "practiceScene" :
-                return <PracticeScene db={route.db} navigator={navigator} />
-              case "addFile" :
-                return <AddFile navigator={navigator} />
-              case "searchCoverImageScene" :
-                return <SearchCoverImageScene navigator={navigator} itemName={route.itemName}/>
-              default:
-                //exit app
-                ToastAndroid.show("程序出错，自动退出",ToastAndroid.LONG);
-                BackAndroid.exitApp();
-            }
-          }}
+          initialRoute = {{ name: "app"}}
+          renderScene = {(route, navigator) => {
+                          switch(route.name){
+                            case 'app':
+                              return <APP navigator = {navigator} />;
+                            case 'searchCoverImageScene':
+                              return <SearchCoverImageScene navigator = {navigator} information = {route.information}/>;
+                            case 'addFile':
+                              return <AddFile navigator = {navigator} />
+                            default:
+                              BackAndroid.exitApp();
+                          }
+                        }}
           configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
         />
-      </View>
-    );
-  }
+      </Provider>
+  );
 }
 
 AppRegistry.registerComponent('RoteVocabApp', () => RoteVocabApp);
