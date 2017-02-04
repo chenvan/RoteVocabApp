@@ -17,7 +17,8 @@ import {
   StatusBar,
   DrawerLayoutAndroid,
   ActivityIndicator,
-  Alert
+  Alert,
+  BackAndroid
 } from 'react-native';
 
 class APP extends Component{
@@ -30,28 +31,21 @@ class APP extends Component{
         return true;
       }
 
-      let prevIndex = this.prevSelectList.indexOf(r2),
-          index = this.selectList.indexOf(r2);
-
-      if((prevIndex > -1 && index === -1) || (prevIndex === -1 && index > -1) || this.prevPropsData[r2] !== this.nextPropsData[r2]){
-        //ToastAndroid.show(r2+' return true', ToastAndroid.SHORT);
-        return true;
-      }else{
-        return false;
-      }
+      return r1 !== r2;
 
     }});
 
     this.state = {
         isEditState: false,
+        trigger: false,
         dataSource,
     };
+
     this.selectList = [];
-    this.prevSelectList = [];
     this.forceRenderListView = false;
-    this.db = null;
-    this.prevPropsData = {}
-    this.nextPropsData = {}
+    this.countNumber = 0;
+
+    this._pressBackButton = this._pressBackButton.bind(this);
   }
 
   componentWillMount(){
@@ -60,23 +54,16 @@ class APP extends Component{
 
   componentWillReceiveProps(newProps){
 
-    if(this.state.isEditState){
-      this.selectList = [];
-      this.prevSelectList = [];
-    }else{
-      this.prevPropsData = Object.assign({}, this.props.data);
-      this.nextPropsData = Object.assign({}, newProps.data);
-    }
-
-    this.db = Object.keys(newProps.data);
-    //由于this.props.data还没有改变，所以尽管封面的网址更改了，但是setState无法更改
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.db)
+      dataSource: this.state.dataSource.cloneWithRows(newProps.data)
     })
+
   }
 
   componentDidMount(){
     StatusBar.setBackgroundColor('#1976D2',true);
+
+    BackAndroid.addEventListener('pressBackButtonInApp', this._pressBackButton);
   }
 
   componentDidUpdate(){
@@ -84,6 +71,10 @@ class APP extends Component{
     if(this.forceRenderListView === true){
       this.forceRenderListView = false;
     }
+  }
+
+  componentWillUnmount(){
+    BackAndroid.removeEventListener('pressBackButtonInApp', this._pressBackButton);
   }
 
   render(){
@@ -115,7 +106,7 @@ class APP extends Component{
                   {title: '导出', icon: {uri: 'ic_file_upload_white_36dp'}, show: 'always'},
                   {title: '删除', icon: {uri: 'ic_delete_forever_white_36dp'}, show: 'always'},
                   {title: '全选', show: 'never'},
-                  {title: '清除全选', show: 'never'}
+                  {title: '清除所选', show: 'never'}
                 ]}
                 title = {this.selectList.length.toString()}
                 titleColor = 'white'
@@ -154,7 +145,17 @@ class APP extends Component{
             <ListView
                 dataSource = {this.state.dataSource}
                 style = {{marginTop:8}}
-                renderRow = {(rowData, sectionID, rowID) => showVocabList.call(this, this.props.data[rowData], rowData)}
+                renderRow = {(rowData, sectionID, rowID) => {
+                  return <VocabListView
+                            coverUrl = {rowData}
+                            listName = {rowID}
+                            pressList = {pressList.call(this, rowID)}
+                            longPressList = {longPressList.call(this, rowID)}
+                            longPressCover = {longPressCover.call(this, rowID)}
+                            selectList = {this.selectList}
+                            editState = {this.state.isEditState}
+                          />;
+                }}
              />
          </View>
        </DrawerLayoutAndroid>
@@ -168,81 +169,40 @@ class APP extends Component{
     })
   }
 
-  _enterSearchCoverImageScene(information){
+  _changeEditState(toState, listName){
+    if(toState === true){
+      this.selectList = [listName];
+      StatusBar.setBackgroundColor('#C2185B', true);
+    }else{
+      this.selectList = [];
+      StatusBar.setBackgroundColor('#1976D2', true);
+    }
 
-    this.props.navigator.push({
-      name: 'searchCoverImageScene',
-      information
-    })
-  }
-
-  _enterVocabList(db){
-
-    this.props.navigator.push({
-      name: 'practiceScene',
-      db
-    })
-    //ToastAndroid.show('enter vocabList', ToastAndroid.SHORT);
-  }
-
-  _changeEditState(toState){
-
-    this.selectList = [];
-    this.prevSelectList = [];
     this.forceRenderListView = true;
 
     this.setState({
-      isEditState: toState
-    });
-
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.db)
-    });
-
-    if(toState === true){
-      StatusBar.setBackgroundColor('#C2185B',true);
-    }else{
-      StatusBar.setBackgroundColor('#1976D2',true);
-    }
-  }
-
-  _handleSelectList(item){
-
-    /*if(this.forceRenderListView){
-      this.forceRenderListView = false;
-    }*/
-
-    //ToastAndroid.show('in handleSlelecList', ToastAndroid.SHORT);
-
-    let index = this.selectList.indexOf(item);
-    this.prevSelectList = this.selectList.slice();
-
-    if(index === -1){
-      this.selectList.push(item);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.db)
-      });
-    }else{
-      this.selectList.splice(index, 1);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.db)
-      });
-    }
+      isEditState: toState,
+      dataSource: this.state.dataSource.cloneWithRows(this.props.data)
+    })
   }
 
   _selectAllItem(){
-    this.prevSelectList = this.selectList.slice();
-    this.selectList = this.db.slice();
+    //this.prevSelectList = this.selectList.slice();
+    this.selectList = Object.keys(this.props.data);
+    this.forceRenderListView = true;
+
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.db)
+      dataSource: this.state.dataSource.cloneWithRows(this.props.data)
     })
   }
 
   _clearSelectItem(){
-    this.prevSelectList = this.selectList.slice();
+
     this.selectList = [];
+    this.forceRenderListView = true;
+
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.db)
+      dataSource: this.state.dataSource.cloneWithRows(this.props.data)
     })
   }
 
@@ -256,7 +216,13 @@ class APP extends Component{
 				[
 					{text:'确认', onPress:() => {
             this.props.deleteVocabListFromCollection(this.selectList).then(() => {
-              ToastAndroid.show('删除成功', ToastAndroid.SHORT)
+
+              this.selectList = [];
+              this.setState({
+                trigger: !this.state.trigger
+              })
+
+              ToastAndroid.show('删除成功', ToastAndroid.SHORT);
             })
           }},
 					{text:"取消", onPress:() => {}}
@@ -282,18 +248,159 @@ class APP extends Component{
 
     		}).then((results)=>{
 
-          this.prevSelectList = this.selectList.slice();
-          this.selectList = [];
-          this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(Object.keys(this.props.data))
-          })
-
+          this._clearSelectItem();
           ToastAndroid.show('导出到：'+path,ToastAndroid.SHORT);
+
 				});
 			}).catch((e)=>{
   			ToastAndroid.show('export error:'+e,ToastAndroid.SHORT);
   		});
   	}
+  }
+
+  _pressBackButton(){
+
+    let currentRoutes = this.props.navigator.getCurrentRoutes().pop();
+
+		if(currentRoutes.name === 'app'){
+
+			if(this.drawerStateOpen){
+				//drawer is in open state
+				this.drawer.closeDrawer();
+			}else if(this.state.isEditState && this.selectList.length === 0){
+        this._changeEditState(false);
+		  }else if(this.state.isEditState && this.selectList.length > 0){
+		  	this._clearSelectItem();
+			}else{
+				//弄成连续按两次退出
+				//设置计数器，设时间，如果时间到，把计数器清零
+				this.countNumber++;
+				if(this.countNumber === 1){
+					ToastAndroid.show('再按一次退出',ToastAndroid.SHORT);
+					setTimeout(()=>{
+						this.countNumber = 0
+					},1000);
+				}else if(this.countNumber === 2){
+					return false
+				}
+			}
+			return true;
+		}else{
+			return true;
+		}
+  }
+}
+
+function pressList(listName){
+
+  let that = this;
+
+  return function(){
+    if(that.state.isEditState){
+      let index = that.selectList.indexOf(listName);
+      if(index === -1){
+        that.selectList.push(listName);
+        this.setState({
+          backgroundColor: 'gray'
+        });
+      }else{
+        that.selectList.splice(index, 1);
+        this.setState({
+          backgroundColor: 'white'
+        })
+      }
+
+      that.setState({
+        trigger: !that.state.trigger
+      })
+
+    }else{
+      that.props.navigator.push({
+        name: 'practiceScene',
+        db: listName
+      })
+    }
+  };
+}
+
+function longPressList(listName){
+
+  let that = this;
+  return function(){
+    if(!that.state.isEditState){
+      that._changeEditState.call(that, true, listName);
+    }
+  }
+}
+
+function longPressCover(listName){
+
+  let that = this;
+
+  return function(){
+    if(!that.state.isEditState){
+
+      that.props.navigator.push({
+        name: 'searchCoverImageScene',
+        information: listName
+      })
+    }
+  }
+}
+
+class VocabListView extends Component{
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      backgroundColor: 'white',
+      borderColor: '#90CAF9'
+    };
+  }
+
+  componentWillReceiveProps(newProps){
+
+    if(newProps.editState){
+      this.setState({
+        borderColor: '#F48FB1'
+      })
+    }else{
+      this.setState({
+        borderColor: '#90CAF9'
+      })
+    }
+
+    if(newProps.selectList.indexOf(this.props.listName) !== -1){
+      this.setState({
+        backgroundColor: 'gray'
+      })
+    }else{
+      this.setState({
+        backgroundColor: 'white'
+      })
+    }
+  }
+
+  render(){
+
+    return (
+      <TouchableOpacity onPress = {this.props.pressList.bind(this)} onLongPress = {this.props.longPressList.bind(this)}>
+        <View style = {[styles.itemContainer, {backgroundColor: this.state.backgroundColor, borderColor: this.state.borderColor}]}>
+          <CustomImage
+            inSelectState = {false}
+            url = {this.props.coverUrl}
+            style = {{width: 67, height: 97}}
+            onLongPress = {this.props.longPressCover.bind(this)}
+          />
+          <Text
+            style={styles.itemText}
+            numberOfLines = {2}
+            ellipsizeMode = {'tail'}
+          >{this.props.listName}</Text>
+        </View>
+      </TouchableOpacity>
+    );
   }
 }
 
@@ -308,49 +415,6 @@ var mapDispatchToProps = (dispatch) => {
   return {
     initApp: () => dispatch(initApp()),
     deleteVocabListFromCollection: (vocabListArray) => dispatch(deleteVocabListFromCollection(vocabListArray))
-  }
-}
-
-function showVocabList(coverUrl, listName){
-  if(this.state.isEditState){
-    let backgroundColor = {backgroundColor: 'white'};
-    if(this.selectList.indexOf(listName) !== -1){
-      backgroundColor = {backgroundColor: 'gray'};
-    }
-
-    return (
-      <View style = {[styles.itemContainer, {borderColor: '#F48FB1'}, backgroundColor]}>
-        <CustomImage
-          inSelectState = {true}
-          url = {coverUrl}
-          style = {{width: 67, height: 97}}
-        />
-        <Text
-          style={styles.itemText}
-          numberOfLines = {2}
-          ellipsizeMode = {'tail'}
-          onPress = {this._handleSelectList.bind(this, listName)}
-        >{listName}</Text>
-      </View>
-    );
-  }else{
-    return (
-      <View style = {[styles.itemContainer, {backgroundColor: 'white', borderColor: '#90CAF9'}]}>
-        <CustomImage
-          inSelectState = {false}
-          url = {coverUrl}
-          style = {{width: 67, height: 97}}
-          onLongPress = {this._enterSearchCoverImageScene.bind(this, listName)}
-        />
-        <Text
-          onPress={this._enterVocabList.bind(this, listName)}
-          onLongPress={this._changeEditState.bind(this, true)}
-          style={styles.itemText}
-          numberOfLines = {2}
-          ellipsizeMode = {'tail'}
-        >{listName}</Text>
-      </View>
-    );
   }
 }
 

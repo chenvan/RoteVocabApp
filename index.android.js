@@ -19,16 +19,12 @@ import SearchCoverImageScene from './lib/Components/SearchCoverImageScene';
 import { configStore } from './lib/Action/Action';
 import AddFile from './lib/Components/AddFile';
 import PracticeScene from './lib/Components/PracticeScene';
-/*import HomeScene from './lib/Components/HomeScene';
-import InitScene from './lib/Components/InitScene';
-*/
 
 var store = configStore();
 
 const RoteVocabApp = () => {
   return (
       <Provider store = {store}>
-        {/*<APP />*/}
         <Navigator
           initialRoute = {{ name: "app"}}
           renderScene = {(route, navigator) => {

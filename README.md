@@ -18,6 +18,8 @@ An android app which is based on react-native
 - react-native-fs
 - react-native-swipe-list-view
 - react-native-parsed-text
+- redux
+- 其余见package.json
 
 安装环境为android 5.0+
 
