@@ -14,7 +14,7 @@ import {
   Navigator,
   BackAndroid,
 } from 'react-native';
-import APP from './APP';
+import HomeScene from './lib/Components/HomeScene';
 import SearchCoverImageScene from './lib/Components/SearchCoverImageScene';
 import { configStore } from './lib/Action/Action';
 import AddFile from './lib/Components/AddFile';
@@ -26,11 +26,11 @@ const RoteVocabApp = () => {
   return (
       <Provider store = {store}>
         <Navigator
-          initialRoute = {{ name: "app"}}
+          initialRoute = {{ name: "homeScene"}}
           renderScene = {(route, navigator) => {
                           switch(route.name){
-                            case 'app':
-                              return <APP navigator = {navigator} />;
+                            case 'homeScene':
+                              return <HomeScene navigator = {navigator} />;
                             case 'searchCoverImageScene':
                               return <SearchCoverImageScene navigator = {navigator} information = {route.information}/>;
                             case 'practiceScene':
