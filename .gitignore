@@ -1,0 +1,16 @@
+# ios
+index.ios.js
+ios/
+
+# android
+android/
+
+# node_modules
+node_modules/
+
+#具体文件
+.babelrc
+.flowconfig
+.watchmanconfig
+.gitattributes
+.buckconfig
