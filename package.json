@@ -1,25 +1,32 @@
 {
   "name": "RoteVocabApp",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
-    "bluebird": "3.4.6",
+    "bluebird": "^3.5.0",
     "diff": "^3.2.0",
-    "react": "^15.4.1",
-    "react-native": "^0.40.0",
-    "react-native-fs": "2.0.1-rc.2",
-    "react-native-parsed-text": "0.0.16",
-    "react-native-swipe-list-view": "^0.3.1",
-    "react-redux": "^5.0.2",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.43.1",
+    "react-native-fs": "^2.1.0-rc.1",
+    "react-native-parsed-text": "0.0.17",
+    "react-native-swipe-list-view": "^0.4.1",
+    "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0",
-    "reselect": "^2.5.4"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "babel-jest": "19.0.0",
     "babel-preset-es2015-mod": "^6.6.0",
-    "babel-preset-es3": "^1.0.1"
+    "babel-preset-es3": "^1.0.1",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
