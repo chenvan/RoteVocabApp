@@ -13,14 +13,18 @@ react-native-fs不再维护，需要用其它模块代替
 
 ### jsdiff
 需要自己安装babel-preset-es2015-mod，babel-preset-es3
+
 但是**不要把它们添加到项目文件下的.babelrc文件里**
 
 ### 手机震动
 需要取得手机权限
+```
 Note for android add <uses-permission android:name="android.permission.VIBRATE"/> to AndroidManifest.xml
+```
 
 ### react-native-swipe-list-view
 修改了SwipeRow.js
+
 由于删除数据A后，跟着的数据B会处于数据A删除时的状态。故在SwipeRow.js中加了componentDidUpdate函数，重设数据B的状态
 
 ### 生成程序可能出现的问题
