@@ -1,7 +1,16 @@
 # 备忘
 
-## to do
-react-native-fs不再维护，需要用其它模块代替
+## bug
+- 屏幕翻转为横屏，点击TextInput会出现新的style，由于文字是白色与TextInput新样式的背景色是白色造成冲突。暂时怀疑和windowSoftInputMode有关
+
+## 2.3 to do
+- DirView的ListView改为FlatList
+- 对DrawerView的样式，内容进行更改
+- 增加更改词集名字的功能
+- SearchCoverImageScene的ListView改为FlatList
+
+## to da later
+- react-native-fs不再维护，需要用其它模块代替
 
 ## 注意
 使用react-native-git-upgrade升级可能会让项目文件夹下某些文件丢失，需要提前做好备份
@@ -36,4 +45,4 @@ Error:Execution failed for task ':app:processDebugResources'.
 
 Java.io.IOException: Could not delete path '{...}\Android\app\build\generated\source\r\{...}
 ```
-解决方法：进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行
+解决方法：进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行，或者不断运行搭建命令
