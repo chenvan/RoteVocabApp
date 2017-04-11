@@ -1,15 +1,17 @@
 # 备忘
 
 ## bug
-- 屏幕翻转为横屏，点击TextInput会出现新的style，由于文字是白色与TextInput新样式的背景色是白色造成冲突。暂时怀疑和windowSoftInputMode有关
+- 问题：屏幕翻转为横屏，点击TextInput会出现新的style，由于文字是白色与TextInput新样式的背景色是白色造成冲突。暂时怀疑和windowSoftInputMode有关。
+
+  解决方法：把TextInput的disableFullscreenUI设置为false（和windowsSoftInputMode无关
 
 ## 2.3 to do
 - DirView的ListView改为FlatList
 - 对DrawerView的样式，内容进行更改
 - 增加更改词集名字的功能
-- SearchCoverImageScene的ListView改为FlatList
+- SearchCoverImageScene的ListView改为FlatList (ok)
 
-## to da later
+## to do when have time
 - react-native-fs不再维护，需要用其它模块代替
 
 ## 注意
@@ -38,11 +40,12 @@ Note for android add <uses-permission android:name="android.permission.VIBRATE"/
 
 ### 生成程序可能出现的问题
 
-#### 1
-问题:
-```
+- 问题：
+
+```java
 Error:Execution failed for task ':app:processDebugResources'.
 
 Java.io.IOException: Could not delete path '{...}\Android\app\build\generated\source\r\{...}
 ```
-解决方法：进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行，或者不断运行搭建命令
+解决方法：进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行，或者不断运行`react-native run-android`
+
