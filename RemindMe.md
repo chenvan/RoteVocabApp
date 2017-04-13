@@ -3,7 +3,7 @@
 ## bug
 - 问题：屏幕翻转为横屏，点击TextInput会出现新的style，由于文字是白色与TextInput新样式的背景色是白色造成冲突。暂时怀疑和windowSoftInputMode有关。
 
-  解决方法：把TextInput的disableFullscreenUI设置为false（和windowsSoftInputMode无关
+  解决方法：把TextInput的disableFullscreenUI设置为false（和windowsSoftInputMode无关)
 
 ## 2.3 to do
 - DirView的ListView改为FlatList
