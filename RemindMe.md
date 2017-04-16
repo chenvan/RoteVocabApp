@@ -1,15 +1,21 @@
 # 备忘
 
-## bug
+## 3.0
+### to do
+### bug
+
+## 2.3 
+### to do
+- DirView的ListView改为FlatList (ok)
+- 保留词集名字setting (ok)
+- 对DrawerView的样式，内容进行更改 (ok)
+- 增加更改词集名字的功能 (next)
+- SearchCoverImageScene的ListView改为FlatList (ok)
+- 尽量以少更改react-native-swipe-list-view的代码为前提，写删除词条动画 (ok)
+### bug
 - 问题：屏幕翻转为横屏，点击TextInput会出现新的style，由于文字是白色与TextInput新样式的背景色是白色造成冲突。暂时怀疑和windowSoftInputMode有关。
 
   解决方法：把TextInput的disableFullscreenUI设置为false（和windowsSoftInputMode无关)
-
-## 2.3 to do
-- DirView的ListView改为FlatList
-- 对DrawerView的样式，内容进行更改
-- 增加更改词集名字的功能
-- SearchCoverImageScene的ListView改为FlatList (ok)
 
 ## to do when have time
 - react-native-fs不再维护，需要用其它模块代替
