@@ -1,8 +1,14 @@
 # 备忘
 
+## to do when have time
+- react-native-fs不再维护，需要用其它模块代替
+
 ## 3.0
 ### to do
+- 研究Headless JS，实行单词直接导入
+- 增加更改词集名字的功能
 ### bug
+- ContentsToDb里的提取文件名字的正则式可能有问题
 
 ## 2.3 
 ### to do
@@ -16,9 +22,6 @@
 - 问题：屏幕翻转为横屏，点击TextInput会出现新的style，由于文字是白色与TextInput新样式的背景色是白色造成冲突。暂时怀疑和windowSoftInputMode有关。
 
   解决方法：把TextInput的disableFullscreenUI设置为false（和windowsSoftInputMode无关)
-
-## to do when have time
-- react-native-fs不再维护，需要用其它模块代替
 
 ## 注意
 使用react-native-git-upgrade升级可能会让项目文件夹下某些文件丢失，需要提前做好备份
