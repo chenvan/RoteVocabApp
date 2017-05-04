@@ -4,47 +4,54 @@
  *1.00 finish date:2016-10-20
  */
 
-import React, { Component } from 'react';
+import React from 'react'
 import { Provider } from 'react-redux'
 import {
   AppRegistry,
-  ToastAndroid,
-  Text,
-  View,
   Navigator,
-  BackAndroid,
-} from 'react-native';
-import HomeScene from './lib/Components/HomeScene';
-import SearchCoverImageScene from './lib/Components/SearchCoverImageScene';
-import { configStore } from './lib/Action/Action';
-import AddFile from './lib/Components/AddFile';
-import PracticeScene from './lib/Components/PracticeScene';
+  BackAndroid
+} from 'react-native'
+import HomeScene from './lib/Components/HomeScene'
+import SearchCoverImageScene from './lib/Components/SearchCoverImageScene'
+import { configStore } from './lib/Action/Action'
+import AddFile from './lib/Components/AddFile'
+import PracticeScene from './lib/Components/PracticeScene'
+import ShareScene from './lib/Components/ShareScene'
 
-var store = configStore();
+var store = configStore()
 
 const RoteVocabApp = () => {
   return (
       <Provider store = {store}>
         <Navigator
-          initialRoute = {{ name: "homeScene"}}
+          initialRoute = {{name: 'homeScene'}}
           renderScene = {(route, navigator) => {
-                          switch(route.name){
-                            case 'homeScene':
-                              return <HomeScene navigator = {navigator} />;
-                            case 'searchCoverImageScene':
-                              return <SearchCoverImageScene navigator = {navigator} information = {route.information}/>;
-                            case 'practiceScene':
-                              return <PracticeScene navigator = {navigator} db = {route.db}/>
-                            case 'addFile':
-                              return <AddFile navigator = {navigator} />
-                            default:
-                              BackAndroid.exitApp();
-                          }
-                        }}
+            switch (route.name) {
+              case 'homeScene':
+                return <HomeScene navigator = {navigator} />
+              case 'searchCoverImageScene':
+                return <SearchCoverImageScene navigator = {navigator} information = {route.information}/>
+              case 'practiceScene':
+                return <PracticeScene navigator = {navigator} db = {route.db}/>
+              case 'addFile':
+                return <AddFile navigator = {navigator} />
+              default:
+                BackAndroid.exitApp()
+            }
+          }}
           configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
         />
       </Provider>
-  );
+  )
 }
 
-AppRegistry.registerComponent('RoteVocabApp', () => RoteVocabApp);
+const Share = () => {
+  return (
+    <Provider store = {store}>
+      <ShareScene />
+    </Provider>
+  )
+}
+
+AppRegistry.registerComponent('RoteVocabApp', () => RoteVocabApp)
+AppRegistry.registerComponent('RoteVocabAppShare', () => Share)

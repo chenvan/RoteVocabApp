@@ -1,6 +1,6 @@
 {
   "name": "RoteVocabApp",
-  "version": "0.0.1",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -13,6 +13,7 @@
     "react-native": "0.43.1",
     "react-native-fs": "^2.1.0-rc.1",
     "react-native-parsed-text": "0.0.17",
+    "react-native-share-extension": "^1.1.1",
     "react-native-swipe-list-view": "^0.4.1",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",

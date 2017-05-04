@@ -5,8 +5,10 @@
 
 ## 3.0
 ### to do
-- 研究Headless JS，实行单词直接导入
+- 写针对AsyncStorage和redux的测试文件
+- 使用react-native-share-extension或者react-native-share-menu接收其它app的share data
 - 增加更改词集名字的功能
+
 ### bug
 - ContentsToDb里的提取文件名字的正则式可能有问题
 
@@ -26,7 +28,28 @@
 ## 注意
 使用react-native-git-upgrade升级可能会让项目文件夹下某些文件丢失，需要提前做好备份
 
-## 搭建程序会出现的问题
+## 搭建程序可能会出现的问题
+
+### react-native-share-extension
+需要做一些设置，[详细](https://github.com/alinz/react-native-share-extension)
+由于分享界面需要透明的背景，需要在```styles.xml```上提供新的**theme**，添加内容如下
+```xml
+<style name="Transparent">
+  <item name="android:windowIsTranslucent">true</item>
+  <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+  <item name="android:windowBackground">@color/transparent</item>
+  <item name="android:windowNoTitle">true</item>
+  <!-- 安卓颜色表示方法 https://developer.android.com/reference/android/graphics/Color.html?hl=es -->
+  <item name="android:textColor">#ff424242</item>
+  <item name="android:editTextColor">#ff424242</item> 
+</style>
+```
+然后在文件夹添加名为```color.xml```文件
+```xml
+<resources>
+	<color name="transparent">#00000000</color>
+</resources>
+```
 
 ### react-native-fs
 需要做一些设置，[详细](https://github.com/johanneslumpe/react-native-fs)
@@ -57,4 +80,6 @@ Error:Execution failed for task ':app:processDebugResources'.
 Java.io.IOException: Could not delete path '{...}\Android\app\build\generated\source\r\{...}
 ```
 解决方法：进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行，或者不断运行`react-native run-android`
+
+
 

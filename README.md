@@ -6,6 +6,7 @@ An android app which is based on react-native
 - react-native-fs
 - react-native-swipe-list-view
 - react-native-parsed-text
+- react-native-share-extension
 - redux
 - diff
 - 其余见package.json
