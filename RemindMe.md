@@ -3,11 +3,17 @@
 ## to do when have time
 - react-native-fs不再维护，需要用其它模块代替
 
-## 3.0
+## 3.1
 ### to do
 - 写针对AsyncStorage和redux的测试文件
-- 使用react-native-share-extension或者react-native-share-menu接收其它app的share data
 - 增加更改词集名字的功能
+
+## 3.0
+### to do
+- 写针对AsyncStorage和redux的测试文件 (next)
+- 使用react-native-share-extension接收其它app的share data (ok)
+- 写CustomToolBar (ok)
+- 增加更改词集名字的功能 (next)
 
 ### bug
 - ContentsToDb里的提取文件名字的正则式可能有问题
