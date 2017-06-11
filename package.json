@@ -10,11 +10,12 @@
     "bluebird": "^3.5.0",
     "diff": "^3.2.0",
     "react": "16.0.0-alpha.6",
-    "react-native": "0.43.1",
+    "react-native": "^0.44.2",
     "react-native-fs": "^2.1.0-rc.1",
     "react-native-parsed-text": "0.0.17",
     "react-native-share-extension": "^1.1.1",
     "react-native-swipe-list-view": "^0.4.1",
+    "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
@@ -31,7 +32,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "19.0.2",
+    "jest": "^19.0.2",
     "react-test-renderer": "16.0.0-alpha.6"
   },
   "jest": {

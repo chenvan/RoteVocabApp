@@ -8,6 +8,16 @@
 - 写针对AsyncStorage和redux的测试文件
 - 增加更改词集名字的功能
 
+## 3.0.1
+### bug
+单条高亮文本分享时会提取不到，这是由于没有了双引号包住高亮句子的缘故（由于每次只导出一条，如何存储句子？是否会和之前的机制冲突）(暂时没有想到解决方法)
+### done
+- 从 Navigator 迁移到 react navigation
+- 从 BackAndroid 迁移到 BackHandler
+- 移除了 AddFile.js
+- 解决了 FlatList numColumns cannot change on the fly
+- 对无法提取的文本给出了警告
+
 ## 3.0
 ### to do
 - 写针对AsyncStorage和redux的测试文件 (next)
